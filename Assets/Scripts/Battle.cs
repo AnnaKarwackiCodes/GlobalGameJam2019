@@ -77,15 +77,14 @@ public class Battle : MonoBehaviour {
                     arrows[2].SetActive(false);
                 }
             }
-            player.GetComponent<Animator>().SetInteger("Attack", 0);
         }
-        else if(player.currentHealth <= 0)
+        if(player.currentHealth <= 0)
         {
-            //SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");
         }
         else if(enemy.currentHealth <= 0)
         {
-           // SceneManager.LoadScene("OverWorld");
+           SceneManager.LoadScene("OverWorld");
         }
     }
 
@@ -162,21 +161,6 @@ public class Battle : MonoBehaviour {
                     enemy.currentHealth--;
                     touch.CurrentInput = TouchInputs.None;
                 }
-                break;
-            default:
-                break;
-        }
-        switch (touch.CurrentInput)
-        {
-            case TouchInputs.Top:
-                player.GetComponent<Animator>().SetInteger("Attack", 3);
-                break;
-            case TouchInputs.Right:
-            case TouchInputs.Left:
-                player.GetComponent<Animator>().SetInteger("Attack", 2);
-                break;
-            case TouchInputs.Bottom:
-                player.GetComponent<Animator>().SetInteger("Attack", 1);
                 break;
             default:
                 break;

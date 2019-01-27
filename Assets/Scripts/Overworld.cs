@@ -18,6 +18,7 @@ public class Overworld : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         touch.MoveCharacter(player);
+        touch.HaveCharacterMove();
         text.text = touch.holder.ToString();
 	}
 }
