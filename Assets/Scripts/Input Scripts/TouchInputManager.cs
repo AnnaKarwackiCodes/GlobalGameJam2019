@@ -95,7 +95,7 @@ public class TouchInputManager : MonoBehaviour {
 
     public void HaveCharacterMove()
     {
-        if(Random.Range(0,100) == 50)
+        if(Random.Range(0,100) == 50 && Time.time > 5)
         {
             SceneManager.LoadScene("test");
         }

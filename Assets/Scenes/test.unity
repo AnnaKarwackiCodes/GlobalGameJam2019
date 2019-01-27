@@ -1276,10 +1276,10 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 10
   stance: 1
-  TurnTime: 10
+  TurnTime: 15
   isTurn: 0
   StartTime: 0
-  attackFreq: 1
+  attackFreq: 1.5
   attackTimeFrame: 1
   attackTimeStart: 0
   text: {fileID: 1751282219}
@@ -1611,6 +1611,11 @@ Prefab:
     - target: {fileID: 4835388307071574, guid: 2c13e7244f5c4dc4aa04f6929a839682, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114377921328632880, guid: 2c13e7244f5c4dc4aa04f6929a839682,
+        type: 2}
+      propertyPath: TurnTime
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2c13e7244f5c4dc4aa04f6929a839682, type: 2}
@@ -2021,6 +2026,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 98c3c7470b94ae94ebf109639c676d72, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 207af7c67af988749a2102b3fd4162c0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98c3c7470b94ae94ebf109639c676d72, type: 3}
   m_IsPrefabParent: 0

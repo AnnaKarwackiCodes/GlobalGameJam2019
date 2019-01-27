@@ -42,6 +42,8 @@ public class Enemy_Base : Character_Controller {
             attackTimeStart = Time.time;
             //myAttack = (Stances)UnityEngine.Random.Range(0, 3);
             myAttack = attackPattern[curPatternPos];
+            if (myAttack == Stances.Up) { GetComponent<Animator>().SetInteger("Attacking", 1); }
+            else { GetComponent<Animator>().SetInteger("Attacking", 2); }
             curPatternPos++;
             if(curPatternPos > attackPattern.Length - 1) { curPatternPos = 0; }
             myTime = Time.time;
@@ -52,6 +54,7 @@ public class Enemy_Base : Character_Controller {
     private void Defend()
     {
         text.text = "Defense: " + stance.ToString();
+        GetComponent<Animator>().SetInteger("Attacking", 0);
     }
 
     public Stances MyAttack
