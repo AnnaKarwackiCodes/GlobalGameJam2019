@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Battle : MonoBehaviour {
     private Player_Controller player;
@@ -13,6 +14,8 @@ public class Battle : MonoBehaviour {
     public Slider playerHealthBar;
     public Slider enemyHealthBar;
     public GameObject[] arrows;
+    public Sprite playerSoul;
+    public Sprite enemySoul;
 
 	// Use this for initialization
 	void Start () {
@@ -33,43 +36,57 @@ public class Battle : MonoBehaviour {
 
         touch.SwipeInput();
 
-        if (player.isTurn)
+        if(player.currentHealth > 0)
         {
-            timeSlider.value = (Time.time - player.StartTime) / player.TurnTime;
-            //dealing damange
-            PlayerAttackInputCheck();
-            touch.CurrentInput = TouchInputs.None;
-            enemy.StartTime = Time.time;/*
-            if(Time.time - player.StartTime > player.TurnTime)
+            if (player.isTurn)
             {
-                player.isTurn = false;
-                enemy.isTurn = true;
+                timeSlider.value = (Time.time - player.StartTime) / player.TurnTime;
+                timeSlider.transform.GetChild(2).GetComponentInChildren<Image>().sprite = playerSoul;
+                //dealing damange
+                PlayerAttackInputCheck();
                 touch.CurrentInput = TouchInputs.None;
-                playerPanel.SetActive(player.isTurn);
-                enemyPanel.SetActive(enemy.isTurn);
-            }*/
-        }
-        /*
-        else if (enemy.isTurn)
-        {
-            timeSlider.value = 1 - ((Time.time - enemy.StartTime) / enemy.TurnTime);
-            DisplayEnemyAttack();
-            EnemyAttackInputCheck();
-            touch.CurrentInput = TouchInputs.None;
-            player.StartTime = Time.time;
-            if (Time.time - enemy.StartTime > enemy.TurnTime)
-            {
-                enemy.isTurn = false;
-                player.isTurn = true;
-                touch.CurrentInput = TouchInputs.None;
-                playerPanel.SetActive(player.isTurn);
-                enemyPanel.SetActive(enemy.isTurn);
-                arrows[0].SetActive(false);
-                arrows[1].SetActive(false);
-                arrows[2].SetActive(false);
+                enemy.StartTime = Time.time;
+                if (Time.time - player.StartTime > player.TurnTime)
+                {
+                    player.isTurn = false;
+                    enemy.isTurn = true;
+                    touch.CurrentInput = TouchInputs.None;
+                    playerPanel.SetActive(player.isTurn);
+                    enemyPanel.SetActive(enemy.isTurn);
+                }
             }
+
+            else if (enemy.isTurn)
+            {
+                timeSlider.value = 1 - ((Time.time - enemy.StartTime) / enemy.TurnTime);
+                timeSlider.transform.GetChild(2).GetComponentInChildren<Image>().sprite = enemySoul;
+
+                DisplayEnemyAttack();
+                EnemyAttackInputCheck();
+                touch.CurrentInput = TouchInputs.None;
+                player.StartTime = Time.time;
+                if (Time.time - enemy.StartTime > enemy.TurnTime)
+                {
+                    enemy.isTurn = false;
+                    player.isTurn = true;
+                    touch.CurrentInput = TouchInputs.None;
+                    playerPanel.SetActive(player.isTurn);
+                    enemyPanel.SetActive(enemy.isTurn);
+                    arrows[0].SetActive(false);
+                    arrows[1].SetActive(false);
+                    arrows[2].SetActive(false);
+                }
+            }
+            player.GetComponent<Animator>().SetInteger("Attack", 0);
         }
-        */
+        else if(player.currentHealth <= 0)
+        {
+            //SceneManager.LoadScene("GameOver");
+        }
+        else if(enemy.currentHealth <= 0)
+        {
+           // SceneManager.LoadScene("OverWorld");
+        }
     }
 
     void EnemyAttackInputCheck()
@@ -152,16 +169,19 @@ public class Battle : MonoBehaviour {
         switch (touch.CurrentInput)
         {
             case TouchInputs.Top:
-                player.GetComponent<Animator>().SetInteger("State", 3);
+                player.GetComponent<Animator>().SetInteger("Attack", 3);
                 break;
             case TouchInputs.Right:
             case TouchInputs.Left:
-                player.GetComponent<Animator>().SetInteger("State", 2);
+                player.GetComponent<Animator>().SetInteger("Attack", 2);
                 break;
             case TouchInputs.Bottom:
-                player.GetComponent<Animator>().SetInteger("State", 1);
+                player.GetComponent<Animator>().SetInteger("Attack", 1);
+                break;
+            default:
                 break;
         }
+        //player.GetComponent<Animator>().SetInteger("State", 0);
     }
 
     void DisplayEnemyAttack()
@@ -190,4 +210,5 @@ public class Battle : MonoBehaviour {
                 break;
         }
     }
+
 }
