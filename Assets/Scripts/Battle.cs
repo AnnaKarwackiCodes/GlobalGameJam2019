@@ -103,7 +103,7 @@ public class Battle : MonoBehaviour {
                     arrows[0].SetActive(false);
                     enemy.MyAttack = Stances.None;
                     touch.CurrentInput = TouchInputs.None;
-                    GetComponent<Animator>().SetInteger("Attacking", 0);
+                    //enemy.GetComponent<Animator>().SetInteger("Attacking", 0);
                 }
                 return;
             case Stances.Down:
@@ -117,7 +117,7 @@ public class Battle : MonoBehaviour {
                     arrows[2].SetActive(false);
                     enemy.MyAttack = Stances.None;
                     touch.CurrentInput = TouchInputs.None;
-                    GetComponent<Animator>().SetInteger("Attacking", 0);
+                    //enemy.GetComponent<Animator>().SetInteger("Attacking", 0);
                 }
                 return;
             case Stances.Middle:
@@ -131,7 +131,7 @@ public class Battle : MonoBehaviour {
                     arrows[1].SetActive(false);
                     enemy.MyAttack = Stances.None;
                     touch.CurrentInput = TouchInputs.None;
-                    GetComponent<Animator>().SetInteger("Attacking", 0);
+                    //enemy.GetComponent<Animator>().SetInteger("Attacking", 0);
                 }
                 return;
             default:

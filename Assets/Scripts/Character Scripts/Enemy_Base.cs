@@ -40,10 +40,11 @@ public class Enemy_Base : Character_Controller {
         if(Time.time - myTime >= attackFreq)
         {
             attackTimeStart = Time.time;
+            GetComponent<Animator>().Play("E_WeepBear_idle");
             //myAttack = (Stances)UnityEngine.Random.Range(0, 3);
             myAttack = attackPattern[curPatternPos];
-            if (myAttack == Stances.Up) { GetComponent<Animator>().SetInteger("Attacking", 1); }
-            else { GetComponent<Animator>().SetInteger("Attacking", 2); }
+            if (myAttack == Stances.Up) { GetComponent<Animator>().Play("E_WeepBear_Attack_High_Charge"); }
+            else { GetComponent<Animator>().Play("E_WeepBear_Attack_High_Charge"); }
             curPatternPos++;
             if(curPatternPos > attackPattern.Length - 1) { curPatternPos = 0; }
             myTime = Time.time;

@@ -43,6 +43,7 @@ public class TouchInputManager : MonoBehaviour {
             else if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
                 end = Input.GetTouch(0).position;
+                player.GetComponent<Animator>().Play("Player_Idle");
                 DetermineDirection();
             }
         }
@@ -55,26 +56,31 @@ public class TouchInputManager : MonoBehaviour {
         if ((start.x > end.x) &&(Mathf.Abs(start.y - end.y) < marginOfError))
         {
             currentInput = TouchInputs.Right;
-            player.GetComponent<Animator>().SetInteger("Attack", 2);
+            player.GetComponent<Animator>().Play("Player_Attack_Mid_A");
+            //player.GetComponent<Animator>().SetInteger("Attack", 2);
         }
         else if((start.x < end.x) && (Mathf.Abs(start.y - end.y) < marginOfError))
         {
             currentInput = TouchInputs.Left;
-            player.GetComponent<Animator>().SetInteger("Attack", 2);
+            player.GetComponent<Animator>().Play("Player_Attack_Mid_A");
+            //player.GetComponent<Animator>().SetInteger("Attack", 2);
         }
         else if ((start.y > end.y) && (Mathf.Abs(start.x - end.x) < marginOfError))
         {
             currentInput = TouchInputs.Top;
-            player.GetComponent<Animator>().SetInteger("Attack", 3);
+            player.GetComponent<Animator>().Play("Player_Attack_High_A");
+            //player.GetComponent<Animator>().SetInteger("Attack", 3);
         }
         else if ((start.y < end.y) && (Mathf.Abs(start.x - end.x) < marginOfError))
         {
             currentInput = TouchInputs.Bottom;
-            player.GetComponent<Animator>().SetInteger("Attack", 1);
+            player.GetComponent<Animator>().Play("Player_Attack_Low_A");
+            //player.GetComponent<Animator>().SetInteger("Attack", 1);
         }
         else
         {
             currentInput = TouchInputs.None;
+            player.GetComponent<Animator>().Play("Player_Idle");
         }
     }
 
