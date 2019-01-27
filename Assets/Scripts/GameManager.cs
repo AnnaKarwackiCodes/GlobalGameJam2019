@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public static Vector3 playerPos;
+    public static Vector3 cameraPos;
+    public static bool moveToPreBattlePos =false;
 }

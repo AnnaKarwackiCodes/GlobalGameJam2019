@@ -47,7 +47,7 @@ public class Enemy_Base : Character_Controller {
             GetComponent<Animator>().Play("E_WeepBear_idle");
             //myAttack = (Stances)UnityEngine.Random.Range(0, 3);
             myAttack = attackPattern[curPatternPos];
-            if (myAttack == Stances.Up) { GetComponent<Animator>().Play("E_WeepBear_Attack_High_Charge"); }
+            if (myAttack == Stances.Up) { GetComponent<Animator>().Play("E_WeepBear_Attack_High_Strike"); }
             else { GetComponent<Animator>().Play("E_WeepBear_Attack_High_Charge"); }
             curPatternPos++;
             if(curPatternPos > attackPattern.Length - 1) { curPatternPos = 0; }

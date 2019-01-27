@@ -105,8 +105,12 @@ public class TouchInputManager : MonoBehaviour {
 
     public void HaveCharacterMove()
     {
-        if(Random.Range(0,100) == 50 && Time.time > 5)
+        
+        if(Random.Range(0,300) == 50 && Time.time > 5 && Vector3.Distance(player.transform.position,player.Final.transform.position) > 15)
         {
+            GameManager.playerPos = player.transform.position;
+            GameManager.cameraPos = camera.transform.position;
+            GameManager.moveToPreBattlePos = true;
             SceneManager.LoadScene("test");
         }
         if(hit.collider)

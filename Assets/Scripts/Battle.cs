@@ -82,9 +82,13 @@ public class Battle : MonoBehaviour {
         {
             SceneManager.LoadScene("GameOver");
         }
-        else if(enemy.currentHealth <= 0)
+        else if(enemy.currentHealth <= 0 && SceneManager.GetActiveScene().name != "FinalBattle")
         {
            SceneManager.LoadScene("OverWorld");
+        }
+        else if(enemy.currentHealth <= 0)
+        {
+            SceneManager.LoadScene("TheEnd");
         }
     }
 
