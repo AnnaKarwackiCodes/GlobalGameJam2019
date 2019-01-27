@@ -56,25 +56,29 @@ public class TouchInputManager : MonoBehaviour {
         if ((start.x > end.x) &&(Mathf.Abs(start.y - end.y) < marginOfError))
         {
             currentInput = TouchInputs.Right;
-            player.GetComponent<Animator>().Play("Player_Attack_Mid_A");
+            if (player.isTurn) { player.GetComponent<Animator>().Play("Player_Attack_Mid_A"); }
+            else { player.GetComponent<Animator>().Play("Player_Defend_Mid"); }
             //player.GetComponent<Animator>().SetInteger("Attack", 2);
         }
         else if((start.x < end.x) && (Mathf.Abs(start.y - end.y) < marginOfError))
         {
             currentInput = TouchInputs.Left;
-            player.GetComponent<Animator>().Play("Player_Attack_Mid_A");
+            if (player.isTurn) { player.GetComponent<Animator>().Play("Player_Attack_Mid_A"); }
+            else { player.GetComponent<Animator>().Play("Player_Defend_Mid"); }
             //player.GetComponent<Animator>().SetInteger("Attack", 2);
         }
         else if ((start.y > end.y) && (Mathf.Abs(start.x - end.x) < marginOfError))
         {
             currentInput = TouchInputs.Top;
-            player.GetComponent<Animator>().Play("Player_Attack_High_A");
+            if (player.isTurn) { player.GetComponent<Animator>().Play("Player_Attack_High_A"); }
+            else { player.GetComponent<Animator>().Play("Player_Defend_High"); }
             //player.GetComponent<Animator>().SetInteger("Attack", 3);
         }
         else if ((start.y < end.y) && (Mathf.Abs(start.x - end.x) < marginOfError))
         {
             currentInput = TouchInputs.Bottom;
-            player.GetComponent<Animator>().Play("Player_Attack_Low_A");
+            if (player.isTurn) { player.GetComponent<Animator>().Play("Player_Attack_Low_A"); }
+            else { player.GetComponent<Animator>().Play("Player_Defend_Low"); }
             //player.GetComponent<Animator>().SetInteger("Attack", 1);
         }
         else

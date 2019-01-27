@@ -15,6 +15,7 @@ public class Enemy_Base : Character_Controller {
     public Text text;
     public Stances[] attackPattern;
     private int curPatternPos;
+    public GameObject[] defending;
     // Use this for initialization
     void Start () {
         currentHealth++;
@@ -25,6 +26,9 @@ public class Enemy_Base : Character_Controller {
 	void Update () {
         if (isTurn)
         {
+            defending[0].SetActive(false);
+            defending[1].SetActive(false);
+            defending[2].SetActive(false);
             Attack();
             text.text = " ";
         }
@@ -55,7 +59,31 @@ public class Enemy_Base : Character_Controller {
     private void Defend()
     {
         text.text = "Defense: " + stance.ToString();
-        GetComponent<Animator>().SetInteger("Attacking", 0);
+        GetComponent<Animator>().Play("E_WeepBear_idle");
+        if(stance == Stances.Up)
+        {
+            defending[0].SetActive(true);
+            defending[1].SetActive(false);
+            defending[2].SetActive(false);
+        }
+        else if(stance == Stances.Middle)
+        {
+            defending[0].SetActive(false);
+            defending[1].SetActive(true);
+            defending[2].SetActive(false);
+        }
+        else if (stance == Stances.Down)
+        {
+            defending[0].SetActive(false);
+            defending[1].SetActive(false);
+            defending[2].SetActive(true);
+        }
+        else
+        {
+            defending[0].SetActive(false);
+            defending[1].SetActive(false);
+            defending[2].SetActive(false);
+        }
     }
 
     public Stances MyAttack
